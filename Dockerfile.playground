@@ -1,0 +1,3 @@
+FROM glottlogist/plutus-base
+
+ENTRYPOINT ./entrypoint.sh

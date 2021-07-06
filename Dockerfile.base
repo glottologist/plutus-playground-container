@@ -5,6 +5,9 @@ COPY ./nix.conf /etc/nix
 RUN nix-env -i git \
     && git clone https://github.com/input-output-hk/plutus.git
 
+COPY ./entrypoint.sh /plutus
+
 WORKDIR /plutus
 
-RUN ["nix-shell"]
+RUN "nix-shell"
+
