@@ -1,3 +1,5 @@
-FROM glottlogist/plutus-base
+FROM glottologist/plutus-base
 
-ENTRYPOINT ./entrypoint.sh
+
+
+ENTRYPOINT ["/bin/sh", "-c" , "startserver.sh && startclient.sh"]

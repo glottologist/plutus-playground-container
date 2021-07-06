@@ -22,7 +22,7 @@ jobs:
 
        - name: Get the version
          id: vars
-         run: echo ::set-output name=tag::$(echo ${GITHUB_SHA:6} )
+         run: echo ::set-output name=tag::$(echo ${GITHUB_SHA:6} | git rev-parse --short=4 )
 
        - name: Build the tagged Docker base image
          run: docker build . -f Dockerfile.base  --tag $BASETAG:${{steps.vars.outputs.tag}}

@@ -1,9 +1,7 @@
 #!/bin/sh
 
-nix-shell
+nix-shell && cd plutus-playground-client &&
 
-cd plutus-playground-client
-
-./plutus-playground-sever &
+plutus-playground-server &
 
 npm run start
