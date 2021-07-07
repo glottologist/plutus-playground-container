@@ -5,8 +5,7 @@ on:
     branches: [ main ]
 
 env:
-  BASETAG: "glottologist/plutus-base"
-  PLAYTAG: "glottologist/plutus-playground"
+  TAG: "glottologist/plutus-playground"
 
 jobs:
 
@@ -24,26 +23,15 @@ jobs:
          id: vars
          run: echo ::set-output name=tag::$(echo ${GITHUB_SHA:6} | git rev-parse --short=4 )
 
-       - name: Build the tagged Docker base image
-         run: docker build . -f Dockerfile.base  --tag $BASETAG:${{steps.vars.outputs.tag}}
+       - name: Build the tagged Docker image
+         run: docker build . --tag $TAG:${{steps.vars.outputs.tag}}
 
-       - name: Push the tagged Docker base image
-         run: docker push $BASETAG:${{steps.vars.outputs.tag}}
+       - name: Push the tagged Docker image
+         run: docker push $TAG:${{steps.vars.outputs.tag}}
 
        - name: Build the latest Docker base image
-         run: docker build . -f Dockerfile.base  --tag $BASETAG:latest
+         run: docker build .  --tag $TAG:latest
 
        - name: Push the latest Docker base image
-         run: docker push $BASETAG:latest
+         run: docker push $TAG:latest
 
-       - name: Build the tagged Docker playground image
-         run: docker build . -f Dockerfile.playgound  --tag $PLAYTAG:${{steps.vars.outputs.tag}}
-
-       - name: Push the tagged Docker playground image
-         run: docker push $PLAYTAG:${{steps.vars.outputs.tag}}
-
-       - name: Build the latest Docker playground image
-         run: docker build . -f Dockerfile.playground  --tag $PLAYTAG:latest
-
-       - name: Push the latest Docker playground image
-         run: docker push $PLAYTAG:latest

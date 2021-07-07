@@ -1,5 +1,0 @@
-FROM glottologist/plutus-base
-
-
-
-ENTRYPOINT ["/bin/sh", "-c" , "startserver.sh && startclient.sh"]
