@@ -13,5 +13,5 @@ RUN "nix-shell"
     #&& cd plutus-playground-client \
     #&& npm install
 
-COPY ./startserver.sh /plutus/plutus-playground-client
-COPY ./startclient.sh /plutus/plutus-playground-client
+COPY ./startserver.sh /plutus
+COPY ./startclient.sh /plutus
