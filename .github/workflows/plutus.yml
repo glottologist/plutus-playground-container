@@ -21,13 +21,17 @@ jobs:
 
 
        - name: Build the tagged Docker image
-         run: VERSION=$(git rev-parse --short HEAD) docker build . --tag $TAG:$VERSION
+         run: |
+           export VERSION=$(git rev-parse --short HEAD)
+           docker build . -t $TAG:$VERSION
 
        - name: Push the tagged Docker image
-         run: VERSION=$(git rev-parse --short HEAD) docker push $TAG:$VERSION
+         run: |
+           export VERSION=$(git rev-parse --short HEAD)
+           docker push $TAG:$VERSION
 
        - name: Build the latest Docker base image
-         run: docker build .  --tag $TAG:latest
+         run: docker build .  -t $TAG:latest
 
        - name: Push the latest Docker base image
          run: docker push $TAG:latest
