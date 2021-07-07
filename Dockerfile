@@ -15,3 +15,5 @@ RUN "nix-shell"
 
 COPY ./startserver.sh /plutus
 COPY ./startclient.sh /plutus
+
+EXPOSE 8009
